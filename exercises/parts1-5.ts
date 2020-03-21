@@ -1,15 +1,15 @@
 // URL for the instructions: 
 // https://education.launchcode.org/intro-to-professional-web-dev/chapters/typescript/exercises.html 
 
-
+import {SpaceLocation} from './SpaceLocation';
 // Part 1: Declare (5) Variables With Typelet spacecraftName: string = "Determination";
 let kilometersToMars: number = 225000000;
 let kilometersToTheMoon: number = 384400;
 
 // Part 2: Print Days to Mars
-let milesToMars: number = kilometersToMars*milesPerKilometer;
-let hoursToMars: number = milesToMars/speedMPH;
-let daysToMars: number = hoursToMars/24;
+// let milesToMars: number = kilometersToMars*milesPerKilometer;
+// let hoursToMars: number = milesToMars/speedMph;
+// let daysToMars: number = hoursToMars/24;
 
 
 // Code an output statement here (use a template literal):
@@ -30,12 +30,15 @@ class Spacecraft {
     speedMph: number;
     constructor(name:string, speedMph: number){
         this.name = name;
-        this.speedMph = speedMPH;
+        this.speedMph = speedMph;
     }
-    function getDaysToLocation(kilometersAway:number):number {
+    getDaysToLocation(kilometersAway:number):number {
         let milesAway: number = kilometersAway*this.milesPerKilometer;
         let hoursToLocation: number = milesAway/this.speedMph;
         return hoursToLocation/24;
+    }
+    printDaysToLocation(location: SpaceLocation) {
+        console.log (`${this.name} would take ${this.getDaysToLocation(location.kilometersAway)} days to get to ${location.name}.`);
     }
 }
 
@@ -48,8 +51,8 @@ let spaceShuttle = new Spacecraft ("Determination", 17500);
 
 // Move your output statements from part 3 here. Update the template literals use the
 // instance of the class.
-console.log (`${spaceShuttle.name} will take ${spaceShuttle.getDaysToLocation(kilometersToMars)} days to arrive at Mars`);
-console.log (`${spaceShuttle.name} will take ${spaceShuttle.getDaysToLocation(kilometersToTheMoon)} days to arrive at the Moon`);
+spaceShuttle.printDaysToLocation(new SpaceLocation('Mars', kilometersToMars));
+spaceShuttle.printDaysToLocation(new SpaceLocation('the Moon', kilometersToTheMoon));
 
 
 
