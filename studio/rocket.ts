@@ -12,6 +12,7 @@ export class Rocket {
         this.totalCapacityKg=totalCapacityKg;
     }
     sumMass(items:Payload[]):number{
+        // returns sum of all items using each item's massKg property
         let categoryMass:number=0;
         for (let i = 0; i<items.length; i++){
             categoryMass += items[i].massKg;
@@ -21,10 +22,12 @@ export class Rocket {
 
     currentMassKg():number {
         //create current Mass calculation here
+        // uses this.sumMass to return the combined mass of this.astronauts and this.cargoItems
         let totalMass = this.sumMass(this.cargoItems)+this.sumMass(this.astronauts);
         return totalMass;
     }
     canAdd (item:Payload):boolean {
+        // returns true if this.currentMassKg() + item.massKg <= this.totalCapacityKg
         if (this.currentMassKg()+item.massKg <= this.totalCapacityKg){
             return true;
         }else{

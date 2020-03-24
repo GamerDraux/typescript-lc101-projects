@@ -6,6 +6,7 @@ var Rocket = /** @class */ (function () {
         this.totalCapacityKg = totalCapacityKg;
     }
     Rocket.prototype.sumMass = function (items) {
+        // returns sum of all items using each item's massKg property
         var categoryMass = 0;
         for (var i = 0; i < items.length; i++) {
             categoryMass += items[i].massKg;
@@ -14,10 +15,12 @@ var Rocket = /** @class */ (function () {
     };
     Rocket.prototype.currentMassKg = function () {
         //create current Mass calculation here
+        // uses this.sumMass to return the combined mass of this.astronauts and this.cargoItems
         var totalMass = this.sumMass(this.cargoItems) + this.sumMass(this.astronauts);
         return totalMass;
     };
     Rocket.prototype.canAdd = function (item) {
+        // returns true if this.currentMassKg() + item.massKg <= this.totalCapacityKg
         if (this.currentMassKg() + item.massKg <= this.totalCapacityKg) {
             return true;
         }
